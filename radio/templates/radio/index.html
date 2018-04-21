@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+
+<!--HEADER -->
+<head>
+    <meta charset="UTF-8">
+    <title>RadIO</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/radiostyle.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<!--BODY -->
+<body>
+<div class="container">
+    <nav class="navbar navbar-inverse">
+    <div class="navbar-header"><a class="navbar-brand" href="#">RadIO</a></div>
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+        <li><a data-toggle="tab" href="#ct_store">CT Store</a></li>
+        <li><a data-toggle="tab" href="#ecg_store">ECG Store</a></li>
+    </ul>
+    </nav>
+    <div class="tab-content">
+        <div id="home" class="tab-pane fade in active" align="center">
+        <p><b>Welcome to RadIO web!!!</b></p>
+        </div>
+        <div id="ct_store" class="tab-pane fade " align="center">
+            <div class="container">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Image</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open CT #1</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open CT #1</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open CT #1</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open CT #1</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="ecg_store" class="tab-pane fade" align="center">
+            <div class="container">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Firstname</th>
+                        <th>Lastname</th>
+                        <th>Email</th>
+                        <th>Image</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>John</td>
+                        <td>Doe</td>
+                        <td>john@example.com</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open ECG #1</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Mary</td>
+                        <td>Moe</td>
+                        <td>mary@example.com</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open ECG #1</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open ECG #1</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>July</td>
+                        <td>Dooley</td>
+                        <td>july@example.com</td>
+                        <td>
+                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open ECG #1</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- POP UP WINDOW WITH IMAGE-->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog" style="width:1000px;height:1000px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">CT Image</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <br>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <br>
+                    <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                    <br>
+                    <!--</div>-->
+                    <canvas id="glCanvas" style="width:965px;height:700px"></canvas>
+                    <br>
+                    <!--<img id="imgCT" src="{% static "data.blk" %}" alt="CT image"/></p>-->
+            </div>
+            <div class="modal-footer">
+                <button type="button1" class="btn btn-default"  style="background-color: #f44336;">Funcion1</button>
+                <button type="button2" class="btn btn-default"  style="background-color: #f44336;">Funcion2</button>
+                <!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<!--SCRIPTS -->
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="static/js/file1.js"></script>
+<script src="static/js/slider.js"></script>
+</html>
