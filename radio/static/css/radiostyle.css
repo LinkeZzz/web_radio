@@ -15,7 +15,6 @@ article{
     overflow: hidden;
 }
 
-
 .slider {
     -webkit-appearance: none;
     width: 100%;
@@ -29,6 +28,9 @@ article{
 }
 .slider:hover {
     opacity: 1;
+}
+.pre-scrollable{
+    width: 150px;
 }
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
