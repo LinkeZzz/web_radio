@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <title>RadIO</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="{% static 'css/radiostyle2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/radiostyle.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
@@ -46,7 +46,7 @@
                         <td>Doe</td>
                         <td>john@example.com</td>
                         <td>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open CT #1</button>
+                            <button type="button" class="btn btn-info btn-lg btn-ct" data-toggle="modal" data-target="#myModal">Open CT #1</button>
                         </td>
                     </tr>
                     <tr>
@@ -54,14 +54,14 @@
                         <td>Moe</td>
                         <td>mary@example.com</td>
                         <td>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open CT #1</button>
+                            <button type="button" class="btn btn-info btn-lg btn-ct" data-toggle="modal" data-target="#myModal">Open CT #1</button>
                         </td>
                     </tr>
                     <tr>
                         <td>July</td>
                         <td>Dooley</td>
                         <td>july@example.com</td>
-                        <td><button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open CT #1</button>
+                        <td><button type="button" class="btn btn-info btn-lg btn-ct" data-toggle="modal" data-target="#myModal">Open CT #1</button>
                         </td>
                     </tr>
                     <tr>
@@ -69,7 +69,7 @@
                         <td>Dooley</td>
                         <td>july@example.com</td>
                         <td>
-                            <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open CT #1</button>
+                            <button type="button" class="btn btn-info btn-lg btn-ct" data-toggle="modal" data-target="#myModal">Open CT #1</button>
                         </td>
                     </tr>
                     </tbody>
@@ -147,7 +147,7 @@
                         <input type="range" min="1" max="100" value="50" class="slider" id="myRange3">
                         <br>
                         <button type="button1" class="btn btn-default"  onclick="predictFunction()" style="background-color: grey;">Predict</button>
-                        <button type="button2" class="btn btn-default"  style="background-color: grey;">Dump</button>
+                        <button type="button2" class="btn btn-default"  onclick="dump_info()" style="background-color: grey;">Dump</button>
                     </nav_left>
 
                     <article>
@@ -159,17 +159,43 @@
                         Study Id:
                         <br><br>
                         Grand Truth Annotator:
-                        <div class="list-group">
-                            <a href="#" class="list-group-item disabled">First item</a>
-                            <a href="#" class="list-group-item">Second item</a>
-                            <a href="#" class="list-group-item">Third item</a>
+                        <div class="pre-scrollable">
+                            <div class="list-group list-grand">
+                                <a href="#" class="list-group-item disabled">First item</a>
+                                <a href="#" class="list-group-item">Second item</a>
+                                <a href="#" class="list-group-item">Third item</a>
+                                <a href="#" class="list-group-item disabled">First item</a>
+                                <a href="#" class="list-group-item">Second item</a>
+                                <a href="#" class="list-group-item">Third item</a>
+                                <a href="#" class="list-group-item disabled">First item</a>
+                                <a href="#" class="list-group-item">Second item</a>
+                                <a href="#" class="list-group-item">Third item</a>
+                                <a href="#" class="list-group-item disabled">First item</a>
+                                <a href="#" class="list-group-item">Second item</a>
+                                <a href="#" class="list-group-item">Third item</a>
+                            </div>
                         </div>
+
                         <br>
                         Predicted Annotation:
-                        <div class="list-group">
-                            <a href="#" class="list-group-item disabled">First item</a>
-                            <a href="#" class="list-group-item">Second item</a>
-                            <a href="#" class="list-group-item">Third item</a>
+                        <div class="pre-scrollable">
+                            <div class="list-group list-predict">
+                                <a href="#" class="list-group-item disabled">First item</a>
+                                <a href="#" class="list-group-item">Second item</a>
+                                <a href="#" class="list-group-item">Third item</a>
+                                <a href="#" class="list-group-item disabled">First item</a>
+                                <a href="#" class="list-group-item">Second item</a>
+                                <a href="#" class="list-group-item">Third item</a>
+                                <a href="#" class="list-group-item disabled">First item</a>
+                                <a href="#" class="list-group-item">Second item</a>
+                                <a href="#" class="list-group-item">Third item</a>
+                                <a href="#" class="list-group-item disabled">First item</a>
+                                <a href="#" class="list-group-item">Second item</a>
+                                <a href="#" class="list-group-item">Third item</a>
+                                <a href="#" class="list-group-item disabled">First item</a>
+                                <a href="#" class="list-group-item">Second item</a>
+                                <a href="#" class="list-group-item">Third item</a>
+                            </div>
                         </div>
                     </article>
                 </div>
