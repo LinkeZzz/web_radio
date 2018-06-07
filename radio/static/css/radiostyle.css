@@ -1,20 +1,33 @@
 nav_left{
     float:left;
-    margin: 0;
-}
+    margin: 10px;
+    width: 600px;
 
+}
+#myRange1{
+    width: 550px;
+}
+#myRange2{
+    width: 550px;
+}
+#myRange3{
+    width: 550px;
+}
 #c_slice{
     align-content: center;
     text-align: center;
 }
 .modal-body{
-    height: 750px;
+    height: 700px;
 }
 article{
-    margin-left: 170px;
+    margin-left: 470px;
     overflow: hidden;
 }
-
+.glCanvas{
+    width: 550px;
+    height: 550px;
+}
 .slider {
     -webkit-appearance: none;
     width: 100%;
@@ -30,7 +43,7 @@ article{
     opacity: 1;
 }
 .pre-scrollable{
-    width: 150px;
+    height: 207px;
 }
 .slider::-webkit-slider-thumb {
     -webkit-appearance: none;
