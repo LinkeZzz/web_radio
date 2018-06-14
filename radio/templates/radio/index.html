@@ -11,23 +11,22 @@
     <link rel="stylesheet" href="{% static 'css/radiostyle.css' %}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
 </head>
 
 <!--BODY -->
 <body>
 <div class="container">
     <nav class="navbar navbar-inverse">
-    <div class="navbar-header"><a class="navbar-brand" href="#">RadIO</a></div>
+    <div class="navbar-header"><a class="navbar-brand" href="#">AI med</a></div>
     <ul class="nav nav-tabs">
         <li class="active"><a data-toggle="tab" href="#home">Home</a></li>
         <li><a data-toggle="tab" href="#ct_store">CT Store</a></li>
-        <li><a data-toggle="tab" href="#ecg_store">ECG Store</a></li>
+        <!--<li><a data-toggle="tab" href="#ecg_store">ECG Store</a></li>-->
     </ul>
     </nav>
     <div class="tab-content">
         <div id="home" class="tab-pane fade in active" align="center">
-        <p><b>Welcome to RadIO web!!!</b></p>
+        <p><b>Welcome to AI med web!!!</b></p>
         </div>
         <div id="ct_store" class="tab-pane fade " align="center">
             <div class="container">
@@ -48,6 +47,7 @@
                         <td>
                             <button type="button" class="btn btn-info btn-lg btn-ct" data-toggle="modal" data-target="#myModal">Open CT #1</button>
                         </td>
+                        <!--->
                     </tr>
                     <tr>
                         <td>Mary</td>
@@ -76,7 +76,7 @@
                 </table>
             </div>
         </div>
-        <div id="ecg_store" class="tab-pane fade" align="center">
+        <!--<div id="ecg_store" class="tab-pane fade" align="center">
             <div class="container">
                 <table class="table table-striped">
                     <thead>
@@ -122,7 +122,7 @@
                     </tbody>
                 </table>
             </div>
-        </div>
+        </div>-->
     </div>
 </div>
 
@@ -139,69 +139,39 @@
                     <nav_left>
                         <canvas id="glCanvas" ></canvas>
                         <br>
-                        <label id="c_slice"> 123 </label>
-                        <br><input type="range" min="1" max="100" value="50" class="slider" id="myRange1">
+                        <br><input type="range" min="0" max="330" value="50" class="slider" id="myRange1">
                         <br>
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange2">
+                        <input type="range" min="0" max="330" value="50" class="slider" id="myRange2">
                         <br>
-                        <input type="range" min="1" max="100" value="50" class="slider" id="myRange3">
-                        <br>
-                        <button type="button1" class="btn btn-default"  onclick="predictFunction()" style="background-color: grey;">Predict</button>
-                        <button type="button2" class="btn btn-default"  onclick="dump_info()" style="background-color: grey;">Dump</button>
+                        <input type="range" min="0" max="330" value="50" class="slider" id="myRange3">
                     </nav_left>
 
                     <article>
-                        <label class="checkbox-inline"><input type="checkbox" value="">CT Annotation</label>
-                        <label class="checkbox-inline"><input type="checkbox" value="">Predict</label>
-                        <br><br>
-                        Patient Id:
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id ="ct_annot" value="" onchange="change_ct_view()">CT Annotation</label>
+                        <label class="checkbox-inline">
+                            <input type="checkbox" id="ct_predict" value=""  onchange="change_predic_view()">Predict</label>
+                        <br><br><br><br>
+                        <b>Patient Id:</b> 90.90.90.91
                         <br>
-                        Study Id:
-                        <br><br>
-                        Grand Truth Annotator:
+                        <b>Study Id:</b> 13.78
+                        <br><br><br><br>
+                        <b>Ground Truth Annotation:</b>
                         <div class="pre-scrollable">
-                            <div class="list-group list-grand">
-                                <a href="#" class="list-group-item disabled">First item</a>
-                                <a href="#" class="list-group-item">Second item</a>
-                                <a href="#" class="list-group-item">Third item</a>
-                                <a href="#" class="list-group-item disabled">First item</a>
-                                <a href="#" class="list-group-item">Second item</a>
-                                <a href="#" class="list-group-item">Third item</a>
-                                <a href="#" class="list-group-item disabled">First item</a>
-                                <a href="#" class="list-group-item">Second item</a>
-                                <a href="#" class="list-group-item">Third item</a>
-                                <a href="#" class="list-group-item disabled">First item</a>
-                                <a href="#" class="list-group-item">Second item</a>
-                                <a href="#" class="list-group-item">Third item</a>
-                            </div>
+                            <div id="list1"></div>
                         </div>
-
                         <br>
-                        Predicted Annotation:
+                        <b>Predicted Annotation:</b>
                         <div class="pre-scrollable">
-                            <div class="list-group list-predict">
-                                <a href="#" class="list-group-item disabled">First item</a>
-                                <a href="#" class="list-group-item">Second item</a>
-                                <a href="#" class="list-group-item">Third item</a>
-                                <a href="#" class="list-group-item disabled">First item</a>
-                                <a href="#" class="list-group-item">Second item</a>
-                                <a href="#" class="list-group-item">Third item</a>
-                                <a href="#" class="list-group-item disabled">First item</a>
-                                <a href="#" class="list-group-item">Second item</a>
-                                <a href="#" class="list-group-item">Third item</a>
-                                <a href="#" class="list-group-item disabled">First item</a>
-                                <a href="#" class="list-group-item">Second item</a>
-                                <a href="#" class="list-group-item">Third item</a>
-                                <a href="#" class="list-group-item disabled">First item</a>
-                                <a href="#" class="list-group-item">Second item</a>
-                                <a href="#" class="list-group-item">Third item</a>
-                            </div>
+                            <div id="list2"></div>
                         </div>
                     </article>
                 </div>
                 <br>
             </div>
             <div class="modal-footer">
+                <button type="button1" class="btn btn-default"  onclick="predict_func()" style="background-color: grey;">Predict</button>
+                <button type="button2" class="btn btn-default"  onclick="dump_info()" style="background-color: grey;">Dump</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
@@ -215,5 +185,10 @@
   src="https://code.jquery.com/jquery-3.3.1.min.js"
   integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
   crossorigin="anonymous"></script>
-<script src="static/js/file1.js"></script>
+<script src="static/js/dicomParser.js"></script>
+<script src="static/js/cornerstone.min.js"></script>
+<script src="static/js/cornerstoneWADOImageLoader.js"></script>
+<script src="static/js/cornerstoneWADOImageLoaderCodecs.js"></script>
+<script src="static/js/cornerstoneWADOImageLoaderWebWorker.js"></script>
+<script src="static/js/file.js"></script>
 </html>

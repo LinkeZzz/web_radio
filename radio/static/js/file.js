@@ -13,21 +13,23 @@ var image;
 var width = 495;
 var height = 495;
 
+var current_axis=0;
+
 predict_areas=new Array(2);
 predict_areas[0]=new Array(5);
 predict_areas[1]=new Array(5);
 
 predict_areas[0][0]=0;
-predict_areas[0][1]=18;
-predict_areas[0][2]=19;
-predict_areas[0][3]=6;
+predict_areas[0][1]=45;
+predict_areas[0][2]=212;
+predict_areas[0][3]=78;
 predict_areas[0][4]=7;
 
 predict_areas[1][0]=0;
-predict_areas[1][1]=140;
-predict_areas[1][2]=150;
-predict_areas[1][3]=16;
-predict_areas[1][4]=50;
+predict_areas[1][1]=300;
+predict_areas[1][2]=155;
+predict_areas[1][3]=117;
+predict_areas[1][4]=5;
 
 function array_init(){
     image_data= new Array();
@@ -152,6 +154,7 @@ function change_slider_x() {
 
     axis = 0;
     slice = range_x.value;
+    current_axis=0;
     $.ajax({
         type: "GET",
         data: {x: range_x.value, y: range_y.value, z: range_z.value, axis: 0, draw: 1},
@@ -207,6 +210,7 @@ function change_slider_y() {
     canvas = document.querySelector("#glCanvas");
     const ctx = canvas.getContext('2d');
 
+    current_axis=1;
     var g_width = 495;
     var g_height = 495;
 
@@ -269,6 +273,7 @@ function change_slider_z() {
     canvas = document.querySelector("#glCanvas");
     const ctx = canvas.getContext('2d');
 
+    current_axis=2;
     var g_width = 495;
     var g_height = 495;
 
@@ -338,7 +343,6 @@ function dump_info(){
           console.log('error');
         }});
 }
-
 
 // Work with image
 // Draw areas from lists
@@ -439,10 +443,10 @@ function calc_new_rad( x, y, z, r, slice, axis){// axis{0-x,1-y,2-z}
 // Predict areas, update list2
 function predict_func(){
     var json ={};
-    var ex1 = {seriesuid : "123.11.11", coordX : 14, coordY : 15, coordZ : 16, diameter_mm : 5};
-    var ex2 = {seriesuid : "123.12.12", coordX : 18, coordY : 19, coordZ : 6, diameter_mm : 7};
-    json[0]= ex1;
-    json[1]= ex2;
+    //var ex1 = {seriesuid : "123.11.11", coordX : 48, coordY : 215, coordZ : 78, diameter_mm : 7};
+    var ex2 = {seriesuid : "123.12.12", coordX : 301, coordY : 155, coordZ : 117, diameter_mm : 5};
+    json[0]= ex2;
+    //json[1]= ex2;
 
     add_elements(json, "list2");
 }
@@ -460,6 +464,17 @@ function click_on_area(element){
     canvas = document.querySelector("#glCanvas");
     const ctx = canvas.getContext('2d');
 
+    document.getElementById("myRange1").value=x;
+    document.getElementById("myRange2").value=y;
+    document.getElementById("myRange3").value=z;
+    $('#myRange1').text(x);
+    $('#myRange2').text(y);
+    $('#myRange3').text(z);
+    document.getElementById("myRange1").innerText = x;
+    document.getElementById("myRange2").innerText = y;
+    document.getElementById("myRange3").innerText = z;
+
+    $()
     $.ajax({
         type: "GET",
         data: {x: x, y: y, z: z, axis: 0, draw: 1},
@@ -513,7 +528,6 @@ function add_elements(json, list_number) {
         element.setAttribute("href", "#");
         element.setAttribute("class", "list-group-item");
         element.setAttribute('onclick', 'click_on_area()');
-        element.onclick=function() {click_on_area(element)};
         //var text = "Userid: " + json[key].seriesuid + "\tx:" + json[key].coordX + "\ty:" + json[key].coordY +
         //    "\tz:" + json[key].coordZ + "\td:" + json[key].diameter_mm;
 
@@ -524,6 +538,7 @@ function add_elements(json, list_number) {
         element.setAttribute('y', json[key].coordY );
         element.setAttribute('z', json[key].coordZ );
         element.setAttribute('d', json[key].diameter_mm );
+        element.onclick=function() {click_on_area(element)};
 
         //element.onclick = click_on_area(text);
         if (list_number.localeCompare("list1")==0){
@@ -555,6 +570,9 @@ function change_ct_view() {
     else {
         view_areas = true;
     }
+    if (current_axis===0){change_slider_x();}
+    if (current_axis===1){change_slider_y();}
+    if (current_axis===2){change_slider_z();}
 }
 function change_predic_view(){
     if (view_predict){
@@ -563,6 +581,9 @@ function change_predic_view(){
     else {
         view_predict=true;
     }
+    if (current_axis===0){change_slider_x();}
+    if (current_axis===1){change_slider_y();}
+    if (current_axis===2){change_slider_z();}
 }
 function loadImage() {
 
