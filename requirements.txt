@@ -1,0 +1,14 @@
+adium-theme-ubuntu==0.3.4
+chardet==2.3.0
+cliapp==1.20160109
+cmdtest==0.22
+gyp==0.1
+Markdown==2.6.6
+Pillow==5.1.0
+pycurl==7.43.0
+Pygments==2.1
+PyYAML==3.11
+reportlab==3.4.0
+ttystatus==0.32
+unity-lens-photos==1.0
+uWSGI==2.0.17
