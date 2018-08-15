@@ -31,12 +31,101 @@ predict_areas[1][2]=155;
 predict_areas[1][3]=117;
 predict_areas[1][4]=5;
 
-function array_init(){
-    image_data= new Array();
-    image_data[0]=new Array();
-    image_data[0][0]=new Array();
+function generate_gen (){
+    var root = document.getElementById('gen');
+
+    var btn = document.createElement('input');
+    btn.type = "button";
+    btn.value ="predict all checked";
+    btn.className= "btn  btn-info btn-lg";
+    btn.setAttribute("data-toggle", "#modal");
+    btn.setAttribute("data-target", "#myModal");
+    // data-target="#myModal"
+    btn.onclick=(function(entry){
+            //TODO: add call to required id
+            alert("predict all clicked")
+        });
+
+    var checkbox1 = document.createElement('input');
+    checkbox1.type = "checkbox";
+    //checkbox1.text.style.display= "Check All";
+
+    root.appendChild(btn);
+    root.appendChild(checkbox1);
+}
+function generate_scans_table(index_list){
+
+    var tbl = document.createElement("table");
+    tbl.className = "table table-striped";
+    for (var r =0;r<10;r++) {
+
+        var row = document.createElement("tr");// ("a")
+
+        var cell = document.createElement("td");
+        var cellText = document.createTextNode(1235 );
+        cell.appendChild(cellText);
+
+        var cell2 = document.createElement("td");
+        var cellText2 = document.createTextNode(3568 );
+        cell2.appendChild(cellText2);
+
+        var cell3 = document.createElement("td");
+        var btn = document.createElement('input');
+        btn.className = "btn btn-info btn-lg btn-ct";
+        btn.type = "button";
+        btn.value ="predict/open";
+        btn.className= "btn  btn-info btn-lg";
+        /*btn.onclick=(function(entry){
+            //TODO: add call to required id
+            alert("click on btn#")
+        });*/
+        cell3.appendChild(btn);
+
+        var cell4 = document.createElement("td");
+        var checkbox1 = document.createElement('input');
+        checkbox1.type = "checkbox";
+        cell4.appendChild(checkbox1);
+
+        row.appendChild(cell);
+        row.appendChild(cell2);
+        row.appendChild(cell3);
+        row.appendChild(cell4);
+
+
+        cell2.onclick = function () {
+            click_on_area(element)
+        };
+        tbl.appendChild(row);
+
+        //document.body.insertBefore(element, list);
+    }
+    var list = document.getElementById("scan_list");
+    list.insertBefore(tbl, list.childNodes[0]);
+}
+
+function post_image(path, data, method){
+
+    method =  method || "post";
+    var form = document.createElement("form");
+    //var csrftoken = getCookie('csrftoken');
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+    form.setAttribute("data", data);
+    document.body.appendChild(form);
+    form.submit();
 }
 function main() {
+
+    generate_scans_table();
+    //generate_gen();
+
+    //Action for image upload
+    $("#the_file_input").change(function(){
+        //this.files
+        post_image("/",this.file, "post");
+        //TODO: send file to backend;
+    });
+    $(".btn-ct").attr('data-target','#myModal');
 
     var c_W = 550;
     var c_H = 550;
@@ -450,7 +539,6 @@ function predict_func(){
 
     add_elements(json, "list2");
 }
-
 //
 function click_on_area(element){
 
